@@ -54,14 +54,18 @@ exports.getOneArticle= function(req, res, next){
 
 
 exports.modifyArticle= function(req, res, next){
-    Article.updateOne({_id: req.params.id}, {...req.body, _id: req.params.id})
+    
+    Article.updateOne({_id: req.params.id}, {...req.body, _id: req.params.id})    
     .then(function(){
         res.status(200).json({message: "Article modifié"})
+        console.log("Article modifié ... normalement !")
+        console.log(Article.updateOne({_id: req.params.id}, {...req.body, _id: req.params.id}) )
     })
 
     .catch(function(error){
         console.log(error)
         res.status(400).json({error})
+
     })
 };
 

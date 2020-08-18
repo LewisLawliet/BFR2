@@ -54,8 +54,8 @@ exports.createQuestion = function(req, res, next){
 
 exports.getOneQuestion = function(req, res, next) {
 	Question.findOne({_id: req.params.id})
-	.then(function(article){
-		res.status(200).json({article})
+	.then(function(question){
+		res.status(200).json({question})
 	})
 	.catch(function(error){
 		res.status(404).json(error)
@@ -66,17 +66,17 @@ exports.getOneQuestion = function(req, res, next) {
 
 exports.getAllQuestion = function(req, res, next){
 	Question.find()
-	.then(function(article){
-		res.status(200).json({article})
+	.then(function(question){
+		res.status(200).json({question})
 	})
 	.catch(function(error){
-		res.status(400).json({article})
+		res.status(400).json({question})
 	})
 };
 
 
 exports.modifyQuestion = function(req, res,next) {
-	Question.updateOnr({_id: req.params.id}, {...req.body, _id: req.params.id})
+	Question.updateOne({_id: req.params.id}, {...req.body, _id: req.params.id})
 	.then(function(req, res, next){
 		res.status(200).json({message: "Question créée"})
 	})

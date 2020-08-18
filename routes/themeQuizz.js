@@ -6,10 +6,10 @@ const auth = require("../middleware/auth");
 
 
 router.post("/systeme-sco", questionCtrl.createQuestion);
-router.get("/systeme-sco/:id", auth, questionCtrl.getOneQuestion);
-router.get("/systeme-sco", auth, questionCtrl.getAllQuestion);
-router.put("/systeme-sco/:id", auth, questionCtrl.modifyQuestion);
-router.delete("/systeme-sco/:id", auth, questionCtrl.deleteQuestion);
+router.get("/systeme-sco/:id", questionCtrl.getOneQuestion);
+router.get("/systeme-sco", questionCtrl.getAllQuestion);
+router.put("/systeme-sco/:id", questionCtrl.modifyQuestion);
+router.delete("/systeme-sco/:id", questionCtrl.deleteQuestion);
 
 router.post("/monde-pro",  questionCtrl.createQuestion);
 router.get("/monde-pro/:id", auth, questionCtrl.getOneQuestion);

@@ -3,30 +3,32 @@ const router = express.Router();
 const articleCulturePopCtrl = require ("../controllers/culture-pop");
 const auth = require("../middleware/auth");
 
+console.log("culture-pop")
+
 router.post("/gastronomie", articleCulturePopCtrl.createArticle);
 
 
-router.get("/gastronomie", auth, articleCulturePopCtrl.getAllArticle);
+router.get("/gastronomie", articleCulturePopCtrl.getAllArticle);
 
-router.get("/gastronomie:id", auth, articleCulturePopCtrl.getOneArticle);
+router.get("/gastronomie/:id", auth, articleCulturePopCtrl.getOneArticle);
 
-router.put("/gastronomie:id", auth, articleCulturePopCtrl.modifyArticle);
+router.put("/gastronomie/:id", auth, articleCulturePopCtrl.modifyArticle);
 
 
-router.delete("/gastronomie:id", auth, articleCulturePopCtrl.deleteArticle);
+router.delete("/gastronomie/:id", articleCulturePopCtrl.deleteArticle);
 //////////////////////////////////////////////////////////////////////////////////////
 
 router.post("/technologie", articleCulturePopCtrl.createArticle);
 
 
-router.get("/technologie", auth, articleCulturePopCtrl.getAllArticle);
+router.get("/technologie", articleCulturePopCtrl.getAllArticle);
 
-router.get("/technologie:id", auth, articleCulturePopCtrl.getOneArticle);
+router.get("/technologie/:id", articleCulturePopCtrl.getOneArticle);
 
-router.put("/technologie:id", auth, articleCulturePopCtrl.modifyArticle);
+router.put("/technologie/:id", articleCulturePopCtrl.modifyArticle);
 
 
-router.delete("/technologie:id", auth, articleCulturePopCtrl.deleteArticle); 
+router.delete("/technologie/:id", articleCulturePopCtrl.deleteArticle); 
 
 module.exports = router; 
 

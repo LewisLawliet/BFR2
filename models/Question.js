@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const questionSchema = mongoose.Schema({
-		libelle: { type: String, required: true}
-		//reponse: { type: String, required: true}
+		libelle: { type: String, required: true},
+		categorie: { type: String, required: true}
 		
 
 }) 

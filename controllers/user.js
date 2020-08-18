@@ -40,10 +40,13 @@ exports.signup = function(req, res, next){
 
 
 
+const userAccount = User.admin
+
+
 exports.login = function(req, res, next){
 
 	//const utilisateur = {}
-	//const userAccount = await userModel.findById(req.user.id).select('-password');
+	//
 
 
 	User.findOne({email: req.body.email, name: req.body.name})
@@ -59,15 +62,15 @@ exports.login = function(req, res, next){
 			}
 
 			res.status(200).json({
-				userId: user._id,
+				userId: user._id,				
 				token: jwt.sign(
-					{userId: user._id},
-					"RANDOM_SECRET_KEY",
+					{userId: user._id, admin: user.admin, grade: user.grade},					
+					"RANDOM_SECRET_KEY",									
 					{expiresIn: "3h"}
 					
 				)
 			})
-
+			console.log(user.grade)
 			console.log("Yes,connexion réussie bro !")
 			
 		})
