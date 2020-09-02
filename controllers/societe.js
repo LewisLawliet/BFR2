@@ -59,18 +59,62 @@ exports.getOneArticle= function(req, res, next){
 };
 
 
-exports.modifyArticle= function(req, res, next){
-    Article.updateOne({_id: req.params.id}, {...req.body, _id: req.params.id})
-    .then(function(){
-        res.status(200).json({message: "Article modifié"})
-        console.log( Article.updateOne({_id: req.params.id}, {...req.body, _id: req.params.id}))
-    })
+exports.modifyArticle= (req, res, next)=>{
+    const titleArticle = req.body.titleArticle
+    const contenuArticle = req.body.contenuArticle
+    
+    
 
-    .catch(function(error){
-        console.log(error)
-        res.status(400).json({error})
-    })
-};
+   if (titleArticle.length > 0 && contenuArticle == 0){
+         Article.updateOne({_id: req.params.id}, {titleArticle})
+         .then(()=>{
+                res.status(200).json({message: "Article modifié"})
+                console.log("TitleArticle Société  modifié !")
+                
+            })
+
+            .catch((error)=>{
+                console.log(error)
+                res.status(400).json({error})
+
+            })  
+
+        } 
+
+        else if (contenuArticle.length > 0 && titleArticle == 0) {
+          Article.updateOne({_id: req.params.id}, {contenuArticle})
+          .then(()=>{
+                res.status(200).json({message: "Article modifié"})
+                console.log("ContenuArticle Société modifié !")
+                
+            })
+
+            .catch((error)=>{
+                console.log(error)
+                res.status(400).json({error})
+
+            })  
+        } 
+
+   else if(titleArticle.length > 0 && contenuArticle.length > 0) {
+        Article.updateOne({_id: req.params.id}, {...req.body})
+        .then(()=>{
+                res.status(200).json({message: "Article modifié"})
+                console.log("Article Société modifié !")
+                
+            })
+
+            .catch((error)=>{
+                console.log(error)
+                res.status(400).json({error})
+
+            }) 
+
+
+         }   
+    
+
+}
 
 
 

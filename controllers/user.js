@@ -62,7 +62,9 @@ exports.login = function(req, res, next){
 			}
 
 			res.status(200).json({
-				userId: user._id,				
+				userId: user._id,
+				admin: user.admin,
+				grade: user.grade,				
 				token: jwt.sign(
 					{userId: user._id, admin: user.admin, grade: user.grade},					
 					"RANDOM_SECRET_KEY",									

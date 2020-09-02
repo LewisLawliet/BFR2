@@ -53,21 +53,92 @@ exports.getOneArticle= function(req, res, next){
 };
 
 
-exports.modifyArticle= function(req, res, next){
+
+/*exports.modifyArticle= async(req, res, next) => {
+
+    const articleId = req.params.id;
+    const aa = req.body.titleArticle;
+    //console.log(aa)
+   // console.log("après aa")
     
-    Article.updateOne({_id: req.params.id}, {...req.body, _id: req.params.id})    
-    .then(function(){
+    try {
+        const article = await Article.findById(articleId)
+        if(!article) throw Error("cet article n'existe pas");
+        
+        const modifierArticle = await Article.findByIdAndUpdate(articleId, req.body, {
+            new: true, runValidators: true
+        });
+        
+        if(!modifierArticle) throw Error("quelque chose s'est mal passé durant la mise à jour de l'article");
+
         res.status(200).json({message: "Article modifié"})
-        console.log("Article modifié ... normalement !")
-        console.log(Article.updateOne({_id: req.params.id}, {...req.body, _id: req.params.id}) )
-    })
-
-    .catch(function(error){
-        console.log(error)
+    }
+    catch(error) {
         res.status(400).json({error})
+    }
+}; */
 
-    })
-};
+exports.modifyArticle= (req, res, next)=>{
+    const titleArticle = req.body.titleArticle
+    const contenuArticle = req.body.contenuArticle
+    
+    
+
+   if (titleArticle.length > 0 && contenuArticle == 0){
+         Article.updateOne({_id: req.params.id}, {titleArticle})
+         .then(()=>{
+                res.status(200).json({message: "Article modifié"})
+                console.log("TitleArticle Culture-pop modifié !")
+                
+            })
+
+            .catch((error)=>{
+                console.log(error)
+                res.status(400).json({error})
+
+            })  
+
+        } 
+
+        else if (contenuArticle.length > 0 && titleArticle == 0) {
+          Article.updateOne({_id: req.params.id}, {contenuArticle})
+          .then(()=>{
+                res.status(200).json({message: "Article modifié"})
+                console.log("ContenuArticle Culture-pop modifié !")
+                
+            })
+
+            .catch((error)=>{
+                console.log(error)
+                res.status(400).json({error})
+
+            })  
+        } 
+
+   else if(titleArticle.length > 0 && contenuArticle.length > 0) {
+        Article.updateOne({_id: req.params.id}, {...req.body})
+        .then(()=>{
+                res.status(200).json({message: "Article modifié"})
+                console.log("Article Culture-pop modifié !")
+                
+            })
+
+            .catch((error)=>{
+                console.log(error)
+                res.status(400).json({error})
+
+            }) 
+
+
+         }   
+    
+
+}
+
+
+
+
+
 
 
 
@@ -82,5 +153,4 @@ exports.deleteArticle= function(req, res, next){
         res.status(400).json({error})
     })
 };
-
 
