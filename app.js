@@ -7,10 +7,11 @@ const userRoutes = require("./routes/user");
 const quizzThemeRoutes = require("./routes/themeQuizz");
 const reponseQuizzRoutes = require("./routes/quizz");
 const buttonAdmin = require("./routes/buttonBackAdmin");
+require('dotenv').config()
 
 const app = express();
 
-mongoose.connect("mongodb+srv://Nadir:FilRouge@clusterfilrouge-dszxk.mongodb.net/test?retryWrites=true&w=majority",
+mongoose.connect(process.env.PASSWORD,
 {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false  })
 .then(function(){
   console.log("Connexion à MongoDB réussie amigo !")
@@ -25,6 +26,8 @@ app.use(function(req, res, next)  {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   next();
 });
+
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
