@@ -1,4 +1,4 @@
- const express = require("express");
+const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const articleSocieteRoutes = require("./routes/societe");
@@ -7,6 +7,7 @@ const userRoutes = require("./routes/user");
 const quizzThemeRoutes = require("./routes/themeQuizz");
 const reponseQuizzRoutes = require("./routes/quizz");
 const buttonAdmin = require("./routes/buttonBackAdmin");
+const interfaceAdmin = require("./routes/spaceAdmin")
 require('dotenv').config()
 
 const app = express();
@@ -17,7 +18,7 @@ mongoose.connect(process.env.PASSWORD,
   console.log("Connexion à MongoDB réussie amigo !")
 })
 .catch(function(){
-  console.log("Connexion à Mongo réussie ... Non je déconne !... ratée! ^^ ")
+  console.log("Connexion à Mongo ratée ! ")
 });
 
 app.use(function(req, res, next)  {
@@ -38,5 +39,6 @@ app.use("/api/auth", userRoutes);
 app.use("/api/theme-quizz", quizzThemeRoutes);
 app.use("/api/quizz", reponseQuizzRoutes);
 app.use("/api/button", buttonAdmin);
+app.use("/api/back", interfaceAdmin);
 
 module.exports = app;

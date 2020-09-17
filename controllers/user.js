@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const Question = require("../models/Question");
-
+require('dotenv').config()
 
 
 
@@ -15,10 +15,9 @@ exports.signup = function(req, res, next){
 			name: req.body.name,
 			email: req.body.email,				
 			password: hash
-			//grade: req.body.grade,
-			//admin: req.body.admin
+			
 		})
-		console.log(req.body.name)
+		
 
 		user.save()
 			.then(function(){
@@ -40,13 +39,9 @@ exports.signup = function(req, res, next){
 
 
 
-const userAccount = User.admin
 
 
-exports.login = function(req, res, next){
-
-	//const utilisateur = {}
-	//
+exports.login = function(req, res, next){	
 
 
 	User.findOne({email: req.body.email, name: req.body.name})
@@ -62,12 +57,10 @@ exports.login = function(req, res, next){
 			}
 
 			res.status(200).json({
-				userId: user._id,
-				admin: user.admin,
-				grade: user.grade,				
+				userId: user._id,								
 				token: jwt.sign(
 					{userId: user._id, admin: user.admin, grade: user.grade},					
-					"RANDOM_SECRET_KEY",									
+					process.env.KEY,									
 					{expiresIn: "3h"}
 					
 				)

@@ -61,38 +61,32 @@ exports.getOneArticle= function(req, res, next){
 
 exports.modifyArticle= (req, res, next)=>{
     const titleArticle = req.body.titleArticle
-    const contenuArticle = req.body.contenuArticle
-    
+    const contenuArticle = req.body.contenuArticle    
     
 
    if (titleArticle.length > 0 && contenuArticle == 0){
          Article.updateOne({_id: req.params.id}, {titleArticle})
          .then(()=>{
                 res.status(200).json({message: "Article modifié"})
-                console.log("TitleArticle Société  modifié !")
-                
+                console.log("TitleArticle Société  modifié !")                
             })
 
             .catch((error)=>{
                 console.log(error)
                 res.status(400).json({error})
-
             })  
-
         } 
 
         else if (contenuArticle.length > 0 && titleArticle == 0) {
           Article.updateOne({_id: req.params.id}, {contenuArticle})
           .then(()=>{
                 res.status(200).json({message: "Article modifié"})
-                console.log("ContenuArticle Société modifié !")
-                
+                console.log("ContenuArticle Société modifié !")                
             })
 
             .catch((error)=>{
                 console.log(error)
                 res.status(400).json({error})
-
             })  
         } 
 
@@ -100,19 +94,15 @@ exports.modifyArticle= (req, res, next)=>{
         Article.updateOne({_id: req.params.id}, {...req.body})
         .then(()=>{
                 res.status(200).json({message: "Article modifié"})
-                console.log("Article Société modifié !")
-                
+                console.log("Article Société modifié !")                
             })
 
             .catch((error)=>{
                 console.log(error)
                 res.status(400).json({error})
-
             }) 
 
-
-         }   
-    
+         }  
 
 }
 

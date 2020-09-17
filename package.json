@@ -10,13 +10,13 @@
   "author": "Nadir",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^4.0.1",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.17",
+    "mongoose": "^5.10.5",
     "mongoose-unique-validator": "^2.0.3",
     "node-modules": "^1.0.1"
   }
