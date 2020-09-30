@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 
 
 const reponseSchema = mongoose.Schema({
-	reponse: { type: String, required: true}
+	reponse: { type: String, required: true},
+	reponseCorrect: { type: String, required: false}
 }) 
 
 

@@ -11,7 +11,8 @@ exports.createAnswer = function(req, res, next){
     })
 
     reponse.save()
-    
+
+        
 
     .then(function(){
         res.status(201).json({message: " réponse créée"})
@@ -24,5 +25,19 @@ exports.createAnswer = function(req, res, next){
         
         res.status(400).json({message: "réponse non créée"})
         console.log("réponse ne passe pas")
+    })
+}; 
+
+
+
+exports.deleteAnswer = function(req, res, next){
+    Reponse.deleteOne({_id: req.params.id })
+    .then(function(){
+        res.status(200).json({message: "Réponse supprimée"})
+    })
+
+    .catch(function(error){
+        console.log("Suppression ratée")
+        res.status(400).json({message: "Suppression ratée"})
     })
 };
