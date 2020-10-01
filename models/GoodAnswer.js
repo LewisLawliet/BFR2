@@ -2,7 +2,9 @@
 
 
 const GoodAnswerSchema = mongoose.Schema({
-	reponse: { type: String, required: true}
+	Answer1: { type: String, required: true},
+	Answer2: { type: String, required: true},
+	categorie: { type: String, required: true}
 
 }) 
 

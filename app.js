@@ -38,6 +38,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use("/api/societe", articleSocieteRoutes);
 app.use("/api/culture-pop", articleCulturePopRoutes);
 app.use("/api/auth", userRoutes);
+app.use("/api/quizz", reponseQuizzRoutes)
 app.use("/api/theme-quizz", quizzThemeRoutes);
 //app.use("/api/quizz", GoodAnswerRoutes);
 app.use("/api/button", buttonAdmin);

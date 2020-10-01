@@ -4,7 +4,7 @@ const quizzCtrl = require("../controllers/quizz");
 const auth = require("../middleware/auth");
 
 
-router.post("/systeme-sco", quizzCtrl.createAnswer);
+router.post("/systeme-sco/:id", quizzCtrl.createAnswer);
 router.post("/monde-pro",  quizzCtrl.createAnswer);
 router.post("/gastronomie",  quizzCtrl.createAnswer);
 router.post("/technologie",  quizzCtrl.createAnswer);

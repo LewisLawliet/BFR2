@@ -1,20 +1,25 @@
 const Reponse = require("../models/Reponse");
 const User = require("../models/User");
+const Question = require("../models/Question");
 
 
+exports.createAnswer = (req, res, next) => {
+    //delete req.body._id;
 
-exports.createAnswer = function(req, res, next){
-    delete req.body._id;
     
     const reponse = new Reponse ({
         ...req.body
     })
 
-    const resLowerCase = reponse.toLowerCase()
-
     
 
-    .then(function(){
+     Question.findOne({_id: req.params.id}).populate("answer")
+
+    .then(function(quest){
+        
+        
+        
+
         res.status(201).json({message: " réponse créée"})
         console.log("Yeah ! Réponse envoyée")
     })
@@ -23,7 +28,7 @@ exports.createAnswer = function(req, res, next){
 
     .catch(function(error){
         
-        res.status(400).json({message: "réponse non créée"})
+        res.status(400).json({message: error.message})
         console.log("réponse ne passe pas")
     })
 }; 
