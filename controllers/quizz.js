@@ -10,9 +10,9 @@ exports.createAnswer = function(req, res, next){
         ...req.body
     })
 
-    reponse.save()
+    const resLowerCase = reponse.toLowerCase()
 
-        
+    
 
     .then(function(){
         res.status(201).json({message: " réponse créée"})
@@ -41,3 +41,4 @@ exports.deleteAnswer = function(req, res, next){
         res.status(400).json({message: "Suppression ratée"})
     })
 };
+
