@@ -8,7 +8,7 @@ const quizzThemeRoutes = require("./routes/themeQuizz");
 const reponseQuizzRoutes = require("./routes/quizz");
 const buttonAdmin = require("./routes/buttonBackAdmin");
 const interfaceAdmin = require("./routes/spaceAdmin");
-//const GoodAnswerRoutes = require("./routes/GoodAnswer");
+const GoodAnswerRoutes = require("./routes/goodAnswer");
 
 require('dotenv').config()
 
@@ -40,7 +40,7 @@ app.use("/api/culture-pop", articleCulturePopRoutes);
 app.use("/api/auth", userRoutes);
 app.use("/api/quizz", reponseQuizzRoutes)
 app.use("/api/theme-quizz", quizzThemeRoutes);
-//app.use("/api/quizz", GoodAnswerRoutes);
+app.use("/api/quizz-good-answer", GoodAnswerRoutes);
 app.use("/api/button", buttonAdmin);
 app.use("/api/back", interfaceAdmin);
 

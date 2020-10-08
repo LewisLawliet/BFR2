@@ -1,36 +1,74 @@
 const Reponse = require("../models/Reponse");
 const User = require("../models/User");
 const Question = require("../models/Question");
+//const Good = require("../models/GoodAnswer");
 
 
-exports.createAnswer = (req, res, next) => {
+exports.createAnswer = async (req, res, next) =>{
     //delete req.body._id;
 
+   
     
     const reponse = new Reponse ({
         ...req.body
     })
 
-    
+     const question = await Question.findById(req.params.id).populate("answer").populate("answers")        
+     //const question = await Question.findOne({_id: req.params.id}).populate("answer")
+       // console.log(question)
 
-     Question.findOne({_id: req.params.id}).populate("answer")
+        const Answer = question.answer[0].answers
 
-    .then(function(quest){
+        console.log(Answer)
+
+        let ToogleAnswer = []
+
+        let ToogleAnswer2 = []
+
+        //console.log(req.body.reponse)
+
+        let checkToogle = null
+
         
+
+       Answer.map((correctAnswer) => {
+
+
+          
+            if(req.body.reponse === correctAnswer) {
+              
+                
+                 ToogleAnswer.push(true)
+            }
+           else {
+                
+                ToogleAnswer2.push(false)
+            }
+
+            return null
+         }) 
+
+
+            console.log(ToogleAnswer[0])
+
+          if (ToogleAnswer[0] === true) {
+
+            checkToogle = true
+            console.log(checkToogle)
+
+          } 
+
+          else {
+
+            checkToogle = false
+            console.log(checkToogle)
+          }  
+
+         // console.log(checkToogle)
+
+        res.status(200).json(checkToogle)
         
-        
 
-        res.status(201).json({message: " réponse créée"})
-        console.log("Yeah ! Réponse envoyée")
-    })
-
-
-
-    .catch(function(error){
-        
-        res.status(400).json({message: error.message})
-        console.log("réponse ne passe pas")
-    })
 }; 
 
 

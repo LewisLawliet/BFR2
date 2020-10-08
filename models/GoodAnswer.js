@@ -1,12 +1,12 @@
-/*const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 
 const GoodAnswerSchema = mongoose.Schema({
-	Answer1: { type: String, required: true},
-	Answer2: { type: String, required: true},
-	categorie: { type: String, required: true}
+	
+	//categorie: { type: String, required: false},
+	answers: [{type: String}]
 
 }) 
 
 
-module.exports = mongoose.model("GoodAnswer", GoodAnswerSchema);*/
+module.exports = mongoose.model("GoodAnswer", GoodAnswerSchema);
