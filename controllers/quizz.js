@@ -18,8 +18,7 @@ exports.createAnswer = async (req, res, next) =>{
        // console.log(question)
 
         const Answer = question.answer[0].answers
-
-        console.log(Answer)
+        const Answer1 = Answer[0] //premire élément de mon tableau "goodAnswer"
 
         let ToogleAnswer = []
 
@@ -43,6 +42,7 @@ exports.createAnswer = async (req, res, next) =>{
            else {
                 
                 ToogleAnswer2.push(false)
+
             }
 
             return null
@@ -62,9 +62,10 @@ exports.createAnswer = async (req, res, next) =>{
 
             checkToogle = false
             console.log(checkToogle)
+            res.status(200).json(Answer1)
           }  
 
-         // console.log(checkToogle)
+         console.log(Answer1)
 
         res.status(200).json(checkToogle)
         
