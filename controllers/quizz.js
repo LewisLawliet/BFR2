@@ -13,6 +13,8 @@ exports.createAnswer = async (req, res, next) =>{
         ...req.body
     })
 
+    try {
+
      const question = await Question.findById(req.params.id).populate("answer").populate("answers")        
      //const question = await Question.findOne({_id: req.params.id}).populate("answer")
        // console.log(question)
@@ -62,14 +64,22 @@ exports.createAnswer = async (req, res, next) =>{
 
             checkToogle = false
             console.log(checkToogle)
-            res.status(200).json(Answer1)
+            
+            return res.status(200).json(Answer1)            
+
+                           
           }  
 
          console.log(Answer1)
 
         res.status(200).json(checkToogle)
-        
 
+     }  
+
+
+catch(error){
+     res.status(400).json({message: "error"})
+     }
 }; 
 
 

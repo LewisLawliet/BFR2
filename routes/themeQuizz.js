@@ -5,9 +5,9 @@ const auth = require("../middleware/auth");
 
 
 
-router.post("/systeme-sco", questionCtrl.createQuestion);
-router.get("/systeme-sco/:id", questionCtrl.getOneQuestion);
-router.get("/systeme-sco", questionCtrl.getAllQuestion);
+router.post("/systeme-sco", auth, questionCtrl.createQuestion);
+router.get("/systeme-sco/:id", auth, questionCtrl.getOneQuestion);
+router.get("/systeme-sco", auth, questionCtrl.getAllQuestion);
 router.put("/systeme-sco/:id", questionCtrl.modifyQuestion);
 router.delete("/systeme-sco/:id", questionCtrl.deleteQuestion);
 
@@ -18,7 +18,7 @@ router.put("/monde-pro/:id", auth, questionCtrl.modifyQuestion);
 router.delete("/monde-pro/:id", auth, questionCtrl.deleteQuestion);
 
 router.post("/gastronomie",  questionCtrl.createQuestion);
-router.get("/gastronomie/:id", auth, questionCtrl.getOneQuestion);
+router.get("/gastronomie/:id", questionCtrl.getOneQuestion);
 router.get("/gastronomie", auth, questionCtrl.getAllQuestion);
 router.put("/gastronomie/:id", auth, questionCtrl.modifyQuestion);
 router.delete("/gastronomie/:id", auth, questionCtrl.deleteQuestion);

@@ -64,7 +64,7 @@ exports.modifyArticle= (req, res, next)=>{
     const contenuArticle = req.body.contenuArticle    
     
 
-   if (titleArticle.length > 0 && contenuArticle == 0){
+   if (titleArticle.length > 0 && contenuArticle.length == 0){
          Article.updateOne({_id: req.params.id}, {titleArticle})
          .then(()=>{
                 res.status(200).json({message: "Article modifié"})
@@ -77,7 +77,7 @@ exports.modifyArticle= (req, res, next)=>{
             })  
         } 
 
-        else if (contenuArticle.length > 0 && titleArticle == 0) {
+        else if (contenuArticle.length > 0 && titleArticle.length == 0) {
           Article.updateOne({_id: req.params.id}, {contenuArticle})
           .then(()=>{
                 res.status(200).json({message: "Article modifié"})

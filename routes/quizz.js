@@ -5,9 +5,9 @@ const auth = require("../middleware/auth");
 
 
 router.post("/systeme-sco/:id", quizzCtrl.createAnswer);
-router.post("/monde-pro",  quizzCtrl.createAnswer);
-router.post("/gastronomie",  quizzCtrl.createAnswer);
-router.post("/technologie",  quizzCtrl.createAnswer);
+router.post("/monde-pro/:id",  quizzCtrl.createAnswer);
+router.post("/gastronomie/:id",  quizzCtrl.createAnswer);
+router.post("/technologie/:id",  quizzCtrl.createAnswer);
 
 
 router.delete("/systeme-sco", quizzCtrl.deleteAnswer);

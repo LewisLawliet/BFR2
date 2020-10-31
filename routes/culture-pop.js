@@ -6,7 +6,7 @@ const authAdmin = require("../middleware/authAdmin");
 
 
 
-router.post("/gastronomie", authAdmin, articleCulturePopCtrl.createArticle);
+router.post("/gastronomie", articleCulturePopCtrl.createArticle);
 
 
 router.get("/gastronomie", articleCulturePopCtrl.getAllArticle);
